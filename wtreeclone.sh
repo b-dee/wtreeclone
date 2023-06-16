@@ -36,15 +36,15 @@ git config --local core.logallrefupdates true
 # branches that we can use for new local tracking branches.
 # We do this before adding any worktrees because tracking
 # info is not set by worktree unless creating a new branch.
-echo 'Delecting local branch refs (note: this is not destructive)...'
+echo 'Delecting local branch refs...'
 git for-each-ref --format='%(refname:short)' refs/heads | xargs git branch -d
 echo 'Fetching remote branch refs...'
 git fetch
 
 # For convenience, make any worktrees specified.
-# wtree_spec values are strings like 'tree_dir:commit_ish'
-# where tree_dir is relative to repo_dir and commit_ish is
-# whatever ref you want to check out in the work tree.
+# <wtree_spec> values are strings like '<tree_dir>:<commit_ish>'
+# where <tree_dir> is relative to <repo_dir> and <commit_ish> is
+# whatever ref you want to check out in the worktree.
 for wtree_spec in "${args_rest[@]}"; do
   # Split using cut to grab each part
   tree_dir=$(echo "$wtree_spec" | cut -d ':' -f 1)
