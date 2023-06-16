@@ -36,7 +36,7 @@ git config --local core.logallrefupdates true
 # branches that we can use for new local tracking branches.
 # We do this before adding any worktrees because tracking
 # info is not set by worktree unless creating a new branch.
-echo 'Delecting local branch refs...'
+echo 'Deleting local branch refs...'
 git for-each-ref --format='%(refname:short)' refs/heads | xargs git branch -d
 echo 'Fetching remote branch refs...'
 git fetch
